@@ -98,3 +98,43 @@ class BST:
             return self._search(key, node.left)
         else:
             return self._search(key, node.right)
+
+    def left_rotate(self, x):
+        y = x.right
+        x.right = y.left
+        if y.left != None:
+            y.left.parent = x
+        y.parent = x.parent
+        if x.parent == None:
+            self.root = y
+        elif x == x.parent.left:
+            x.parent.left = y
+        else:
+            x.parent.right = y
+        y.left = x
+        x.parent = y
+        
+    def right_rotate(self, x):
+        y = x.left
+        x.left = y.right
+        if y.right != None:
+            y.right.parent = x
+        y.parent = x.parent
+        if x.parent == None:
+            self.root = y
+        elif x == x.parent.right:
+            x.parent.right = y
+        else:
+            x.parent.left = y
+        y.right = x
+        x.parent = y
+
+    def inorder(self):
+        self._inorder(self.root)
+        print()
+
+    def _inorder(self, node):
+        if node:
+            self._inorder(node.left)
+            print(node.key, end=' ')
+            self._inorder(node.right)
