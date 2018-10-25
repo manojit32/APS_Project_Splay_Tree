@@ -4,6 +4,30 @@ class Splay(bst.BST):
     def __init__(self):
         super(Splay, self).__init__()
 
+    def splay(self, x):
+        while x != self.root:
+            if x == x.parent.right:
+                if x.parent == self.root:
+                    self.left_rotate(x.parent)
+                elif x.parent == x.parent.parent.right:
+                    self.left_rotate(x.parent.parent)
+                    self.left_rotate(x.parent)
+                else:
+                    assert x.parent == x.parent.parent.left
+                    self.left_rotate(x.parent)
+                    self.right_rotate(x.parent)
+            else:
+                assert x == x.parent.left
+                if x.parent == self.root:
+                    self.right_rotate(x.parent)
+                elif x.parent == x.parent.parent.left:
+                    self.right_rotate(x.parent.parent)
+                    self.right_rotate(x.parent)
+                else:
+                    assert x.parent == x.parent.parent.right
+                    self.right_rotate(x.parent)
+                    self.left_rotate(x.parent)
+
     def _insert(self, key, node):
         if key < node.key:
             if node.left:
