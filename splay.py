@@ -43,19 +43,30 @@ class Splay(bst.BST):
                 self.splay(node.right)
 
     def _search(self, key, node,l):
-        if not node:
-            return False
-        elif key in node.key:
-            #print(node.key)
-            l.append(node.key)
-            self._search(key, node.left,l)
-            self._search(key, node.right,l)
-            self.splay(node)
-            return l
-        elif key < node.key:
-            return self._search(key, node.left,l)
+        if type(key)==int:
+            if not node:
+                return False
+            elif((key==node.key)):
+                self.splay(node)
+                return True
+            elif key < node.key:
+                return self._search(key, node.left,l)
+            else:
+                return self._search(key, node.right,l)
         else:
-            return self._search(key, node.right,l)
+            if not node:
+                return False
+            elif((key in node.key)):
+                #print(node.key)
+                l.append(node.key)
+                self._search(key, node.left,l)
+                self._search(key, node.right,l)
+                self.splay(node)
+                return l
+            elif key < node.key:
+                return self._search(key, node.left,l)
+            else:
+                return self._search(key, node.right,l)
 
     def _remove(self, z):
         if z.left == None:

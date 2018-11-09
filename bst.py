@@ -88,20 +88,35 @@ class BST:
 
     def search(self, key):
         l=[]
-        l1=self._search(key, self.root,l)
-        l2=set(l1)
-        for i in l2:
-            print(i)
+        if type(key)==int:
+            return self._search(key, self.root,l)
+        else:
+            l1=self._search(key, self.root,l)
+            if l1==False:
+                return False
+            l2=set(l1)
+            for i in l2:
+                print(i)
 
     def _search(self, key, node,l):
-        if not node:
-            return False
-        elif key in node.key:
-            return True
-        elif key < node.key:
-            return self._search(key, node.left,l)
+        if type(key)==int:
+            if not node:
+                return False
+            elif((key==node.key)):
+                return True
+            elif key < node.key:
+                return self._search(key, node.left,l)
+            else:
+                return self._search(key, node.right,l)
         else:
-            return self._search(key, node.right,l)
+            if not node:
+                return False
+            elif((key in node.key)):
+                return True
+            elif key < node.key:
+                return self._search(key, node.left,l)
+            else:
+                return self._search(key, node.right,l)
 
     def left_rotate(self, x):
         y = x.right
