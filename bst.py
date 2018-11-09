@@ -87,17 +87,21 @@ class BST:
         return max(lheight, rheight) + 1
 
     def search(self, key):
-        return self._search(key, self.root)
+        l=[]
+        l1=self._search(key, self.root,l)
+        l2=set(l1)
+        for i in l2:
+            print(i)
 
-    def _search(self, key, node):
+    def _search(self, key, node,l):
         if not node:
             return False
-        elif key == node.key:
+        elif key in node.key:
             return True
         elif key < node.key:
-            return self._search(key, node.left)
+            return self._search(key, node.left,l)
         else:
-            return self._search(key, node.right)
+            return self._search(key, node.right,l)
 
     def left_rotate(self, x):
         y = x.right
@@ -136,5 +140,5 @@ class BST:
     def _inorder(self, node):
         if node:
             self._inorder(node.left)
-            print(node.key, end=' ')
+            print(node.key)
             self._inorder(node.right)
