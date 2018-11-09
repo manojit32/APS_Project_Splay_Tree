@@ -88,7 +88,7 @@ class BST:
 
     def search(self, key):
         l=[]
-        if type(key)==int:
+        if type(key) in [int,float]:
             return self._search(key, self.root,l)
         else:
             l1=self._search(key, self.root,l)
@@ -99,7 +99,7 @@ class BST:
                 print(i)
 
     def _search(self, key, node,l):
-        if type(key)==int:
+        if type(key) in [int,float]:
             if not node:
                 return False
             elif((key==node.key)):

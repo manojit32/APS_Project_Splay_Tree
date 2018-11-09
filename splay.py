@@ -43,7 +43,7 @@ class Splay(bst.BST):
                 self.splay(node.right)
 
     def _search(self, key, node,l):
-        if type(key)==int:
+        if type(key) in [int,float]:
             if not node:
                 return False
             elif((key==node.key)):
