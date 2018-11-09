@@ -2,7 +2,11 @@ import bst
 import splay
 import random
 import time
-
+import plotly
+import plotly.graph_objs as go
+import plotly.plotly as py
+from plotly.offline import init_notebook_mode, iplot
+plotly.offline.init_notebook_mode()
 NUM_ROUNDS = 5
 maxl=[]
 avg_uni_bl=[]
@@ -196,13 +200,13 @@ while(MAX<100001):
     avg_del_bl.append(avg_del_b / NUM_ROUNDS)
     # print("Splay: ", avg_del_s / NUM_ROUNDS)
     avg_del_sl.append(avg_del_s / NUM_ROUNDS)
-    print("\n")
+    #print("\n")
     maxl.append(MAX)
     MAX=MAX+10000
 
 import matplotlib.pyplot as plt 
 i=0
-print(maxl) 
+'''print(maxl) 
 print(avg_uni_bl) 
 print(avg_uni_sl) 
 print(avg_very_uneven_bl) 
@@ -212,34 +216,130 @@ print(avg_pretty_uneven_s10l)
 print(avg_pretty_uneven_b4l) 
 print(avg_pretty_uneven_s4l) 
 print(avg_del_bl) 
-print(avg_del_sl)
+print(avg_del_sl)'''
+
 def avg_del1():
-    plt.plot(maxl,avg_del_bl,'o-',label='BST')
-    plt.plot(maxl,avg_del_sl,'x-',label='Splay')
-    plt.title("Deletion")
-    plt.legend()
-    plt.show()
+    # plt.plot(maxl,avg_del_bl,'o-',label='BST')
+    # plt.plot(maxl,avg_del_sl,'x-',label='Splay')
+    # plt.title("Deletion")
+    # plt.legend()
+    # plt.show()
+    trace1 = go.Scatter(
+                    x = maxl,
+                    y = avg_del_bl,
+                    mode = "lines+markers",
+                    name = "BST",
+                    marker = dict(color = 'rgba(16, 112, 2, 0.8)'))
+    trace2 = go.Scatter(
+                    x = maxl,
+                    y = avg_del_sl,
+                    mode = "lines+markers",
+                    name = "Splay",
+                    marker = dict(color = 'rgba(80, 26, 80, 0.8)'))
+    data = [trace1, trace2]
+    layout = dict(title = 'Deleting 1000 Elements (in seconds) from BST and Splay',
+                xaxis= dict(title= 'Number of nodes',ticklen= 5,zeroline= False),
+                yaxis= dict(title= 'Time (in seconds)',ticklen= 5,zeroline= False)
+                )
+    fig = dict(data = data, layout = layout)
+    iplot(fig,image='png')
 def avg_pretty_uneven101():
-    plt.plot(maxl,avg_pretty_uneven_b10l,'o-',label='BST')
-    plt.plot(maxl,avg_pretty_uneven_s10l,'x-',label='Splay')
-    plt.title("10 elements")
-    plt.legend()
-    plt.show()
+    # plt.plot(maxl,avg_pretty_uneven_b10l,'o-',label='BST')
+    # plt.plot(maxl,avg_pretty_uneven_s10l,'x-',label='Splay')
+    # plt.title("10 elements")
+    # plt.legend()
+    # plt.show()
+    trace1 = go.Scatter(
+                    x = maxl,
+                    y = avg_pretty_uneven_b10l,
+                    mode = "lines+markers",
+                    name = "BST",
+                    marker = dict(color = 'rgba(16, 112, 2, 0.8)'))
+    trace2 = go.Scatter(
+                    x = maxl,
+                    y = avg_pretty_uneven_s10l,
+                    mode = "lines+markers",
+                    name = "Splay",
+                    marker = dict(color = 'rgba(80, 26, 80, 0.8)'))
+    data = [trace1, trace2]
+    layout = dict(title = 'Same 10 Elements Queried Randomly (in seconds) from BST and Splay',
+                xaxis= dict(title= 'Number of nodes',ticklen= 5,zeroline= False),
+                yaxis= dict(title= 'Time (in seconds)',ticklen= 5,zeroline= False)
+                )
+    fig = dict(data = data, layout = layout)
+    iplot(fig,image='png')
 def avg_pretty_uneven4l():
-    plt.plot(maxl,avg_pretty_uneven_b4l,'o-',label='BST')
-    plt.plot(maxl,avg_pretty_uneven_s4l,'x-',label='Splay')
-    plt.title("4 elements")
-    plt.legend()
-    plt.show()
+    # plt.plot(maxl,avg_pretty_uneven_b4l,'o-',label='BST')
+    # plt.plot(maxl,avg_pretty_uneven_s4l,'x-',label='Splay')
+    # plt.title("4 elements")
+    # plt.legend()
+    # plt.show()
+    trace1 = go.Scatter(
+                    x = maxl,
+                    y = avg_pretty_uneven_b4l,
+                    mode = "lines+markers",
+                    name = "BST",
+                    marker = dict(color = 'rgba(16, 112, 2, 0.8)'))
+    trace2 = go.Scatter(
+                    x = maxl,
+                    y = avg_pretty_uneven_s4l,
+                    mode = "lines+markers",
+                    name = "Splay",
+                    marker = dict(color = 'rgba(80, 26, 80, 0.8)'))
+    data = [trace1, trace2]
+    layout = dict(title = 'Same 4 Elements Queried Randomly (in seconds) from BST and Splay',
+                xaxis= dict(title= 'Number of nodes',ticklen= 5,zeroline= False),
+                yaxis= dict(title= 'Time (in seconds)',ticklen= 5,zeroline= False)
+                )
+    fig = dict(data = data, layout = layout)
+    iplot(fig,image='png')
 def avg_pretty_uneven1():
-    plt.plot(maxl,avg_very_uneven_bl,'o-',label='BST')
-    plt.plot(maxl,avg_very_uneven_sl,'x-',label='Splay')
-    plt.title("single element")
-    plt.legend()
-    plt.show()
+    # plt.plot(maxl,avg_very_uneven_bl,'o-',label='BST')
+    # plt.plot(maxl,avg_very_uneven_sl,'x-',label='Splay')
+    # plt.title("single element")
+    # plt.legend()
+    # plt.show()
+    trace1 = go.Scatter(
+                    x = maxl,
+                    y = avg_very_uneven_bl,
+                    mode = "lines+markers",
+                    name = "BST",
+                    marker = dict(color = 'rgba(16, 112, 2, 0.8)'))
+    trace2 = go.Scatter(
+                    x = maxl,
+                    y = avg_very_uneven_sl,
+                    mode = "lines+markers",
+                    name = "Splay",
+                    marker = dict(color = 'rgba(80, 26, 80, 0.8)'))
+    data = [trace1, trace2]
+    layout = dict(title = 'Single Element Queried Repeatedly Results (in seconds) from BST and Splay',
+                xaxis= dict(title= 'Number of nodes',ticklen= 5,zeroline= False),
+                yaxis= dict(title= 'Time (in seconds)',ticklen= 5,zeroline= False)
+                )
+    fig = dict(data = data, layout = layout)
+    iplot(fig,image='png')
 def avg_uni1():
-    plt.plot(maxl,avg_uni_bl,'o-',label='BST')
-    plt.plot(maxl,avg_uni_sl,'x-',label='Splay')
-    plt.title("Uniform Access")
-    plt.legend()
-    plt.show()
+    # plt.plot(maxl,avg_uni_bl,'o-',label='BST')
+    # plt.plot(maxl,avg_uni_sl,'x-',label='Splay')
+    # plt.title("Uniform Access")
+    # plt.legend()
+    # plt.show()
+    trace1 = go.Scatter(
+                    x = maxl,
+                    y = avg_uni_bl,
+                    mode = "lines+markers",
+                    name = "BST",
+                    marker = dict(color = 'rgba(16, 112, 2, 0.8)'))
+    trace2 = go.Scatter(
+                    x = maxl,
+                    y = avg_uni_sl,
+                    mode = "lines+markers",
+                    name = "Splay",
+                    marker = dict(color = 'rgba(80, 26, 80, 0.8)'))
+    data = [trace1, trace2]
+    layout = dict(title = 'Uniform Access Results (in seconds) from BST and Splay',
+                xaxis= dict(title= 'Number of nodes',ticklen= 5,zeroline= False),
+                yaxis= dict(title= 'Time (in seconds)',ticklen= 5,zeroline= False)
+                )
+    fig = dict(data = data, layout = layout)
+    iplot(fig,image='png')
