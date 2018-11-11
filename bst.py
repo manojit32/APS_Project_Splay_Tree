@@ -97,6 +97,7 @@ class BST:
             l2=set(l1)
             for i in l2:
                 print(i)
+            
 
     def _search(self, key, node,l):
         if type(key) in [int,float]:
