@@ -103,8 +103,8 @@ class BST:
             if l1==False:
                 return False
             # l2=set(l1)
-            for i in l1:
-                print(i)
+#             for i in l1:
+#                 print(i)
 
     def _search(self, key, node):
         if type(key) in [int,float]:

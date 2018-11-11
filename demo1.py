@@ -6,7 +6,7 @@ df4=pd.read_csv("unique_tracks.txt",sep="<SEP>",header=None,engine='python')
 df6=df4[[2,3]]
 df6=df6.dropna()
 s1=splay1.Splay()
-for i in range(0,int(df6.size/2)):
+for i in range(0,int(df6.size/8)):
     s1.insert(df6.iat[i,0],df6.iat[i,1])
 print("1")
 def face():
